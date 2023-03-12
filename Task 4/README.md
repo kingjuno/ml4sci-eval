@@ -22,31 +22,57 @@ transforms.Grayscale(num_output_channels=1)
 These transforms randomly crop the images, resize them to 256x256, perform random rotations up to 180 degrees, adjust the brightness, resize the images to 128x128, and convert them to grayscale.
 
 ## Model Selection
-I have used Steerable CNNs, which are E(2)-Equivariant CNNs. 
+I have used 
+- Steerable CNNs, which are E(2)-Equivariant CNNs
+- Equivariant Wide ResNet
 
 ## Training and Evaluation
+For **Steerable CNN**:
 I trained the model for 10 epochs using the Adam optimizer with a learning rate of 0.0001, and a batch size of 64. The model was trained on a Kaggle GPU P100 with 16GB VRAM for faster computation. The loss function used during training was cross-entropy loss. To adjust the learning rate during training, I used a StepLR scheduler with a step size of 5 and a gamma value of 0.7.
 
-To evaluate the performance of the model, I used ROC curve and AUC score (mentioned in the task), as well as confusion matrix.
+For **Equivariant Wide ResNet**:
+I trained the model for 10 epochs using the Adam optimizer with a learning rate of 0.001, and a batch size of 16. The model was trained on a Kaggle GPU P100 with 16GB VRAM for faster computation. The loss function used during training was cross-entropy loss. To adjust the learning rate during training, I used a StepLR scheduler with a step size of 3 and a gamma value of 0.1.
+
+To evaluate the performance of the models, I used ROC curve and AUC score (mentioned in the task), as well as confusion matrix.
 
 ## Results
 
-These are the Results:
+### These are the Results for **Steerable CNN**:
 
-### Loss plot
+#### Loss plot
 
 ![](../assets/specific1-loss.png)
 
-### Confusion Matrix
+#### Confusion Matrix
 
 ![](../assets/specific1-cm.png)
 
-### ROC Curve
+#### ROC Curve
 
 ![](../assets/specific1-roc.png)
 
-### AUC Score
-AUC-SCORE 0.9857433808553971
+#### AUC Score
+AUC-SCORE: 0.9857433808553971
+
+### These are the Results for **Equivariant Wide ResNet**:
+
+#### Loss plot
+![](../assets/specific1-loss2.png)
+
+#### Confusion Matrix
+![](../assets/specific1-cm2.png)
+
+#### ROC Curve
+![](../assets/specific1-roc2.png)
+
+#### AUC Score
+AUC-SCORE: 0.9960347152477401
+
+------------------------------------
+| model | AUC-SCORE | Best Accuracy |
+| --- | --- | --- |
+| Steerable CNN | 0.9857433808553971 | 99.00% |
+| Equivariant Wide ResNet | 0.9960347152477401 | 99.20% |
 
 # Citations
 
